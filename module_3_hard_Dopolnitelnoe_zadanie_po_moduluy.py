@@ -25,7 +25,8 @@ def calculate_structure_sum(*args):
         elif isinstance(i, (list, tuple, set)):
             summa += calculate_structure_sum(*i)
         elif isinstance(i, dict):
-            summa += calculate_structure_sum(slovar(**i))
+            for key, value in i.items():
+                summa += calculate_structure_sum(len(key), value)
     return summa
 
 
