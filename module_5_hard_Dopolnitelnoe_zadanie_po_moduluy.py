@@ -83,8 +83,6 @@ class UrTube:
 
     def log_in(self, nickname, password):
         for key, value in User.dictUserPassword.items():
-            print(f"|{nickname}| == |{key}|? and |{
-                  hash(password)}| == |{value}|?")
             if nickname == key and hash(password) == value:
                 self.current_user = nickname
 
