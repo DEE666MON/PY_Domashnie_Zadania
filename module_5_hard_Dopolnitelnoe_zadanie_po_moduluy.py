@@ -65,16 +65,20 @@ class UrTube:
             if self.current_user != None:
                 for key, value in User.dictUserAge.items():
                     if key == self.current_user:
-                        if value >= 18:
-                            if name_video == self.videos[i]:
-                                for timeS in range(10):
-                                    print(timeS + 1, end=' ')
-                                    time.sleep(0.1)
-                                print("Конец видео")
-                        else:
-                            print("Вам нет 18 лет, пожалуйста покиньте страницу")
-                            flagBreak = True
-                            break
+                        for key1, value1 in Video.dictVideoAdult.items():
+                            if key1 == name_video:
+                                if value >= 18 and value1:
+                                    if name_video == self.videos[i]:
+                                        for timeS in range(10):
+                                            print(timeS + 1, end=' ')
+                                            time.sleep(0.1)
+                                        print("Конец видео")
+                                else:
+                                    print("Вам нет 18 лет, пожалуйста покиньте страницу")
+                                    flagBreak = True
+                                    break
+                    if flagBreak:
+                        break
             else:
                 print("Войдите в аккаунт, чтобы смотреть видео")
                 break
