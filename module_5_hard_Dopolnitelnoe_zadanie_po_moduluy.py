@@ -2,31 +2,19 @@ import time
 
 
 class Video:
-    dictVideoDuration = {}
-    dictVideoAdult = {}
-    time_now = 0
 
     def __init__(self, title, duration, adult_mode=False):
         self.title = title
         self.duration = duration
         self.adult_mode = adult_mode
-        self.dictVideoDuration[self.title] = self.duration
-        self.dictVideoAdult[self.title] = self.adult_mode
-
-    def __str__(self):
-        return self.title
 
 
 class User:
-    dictUserPassword = None
-    dictUserAge = None
 
     def __init__(self, nickname, password, age):
         self.nickname = nickname
         self.password = hash(password)
         self.age = age
-        self.dictUserPassword[self.nickname] = self.password
-        self.dictUserAge[self.nickname] = self.age
 
 
 class UrTube:
@@ -35,81 +23,22 @@ class UrTube:
     current_user = None
 
     def add(self, *args):
-        for i in args:
-            for j in Video.dictVideoDuration.keys():
-                if i.title != j:
-                    self.videos.append(i.title)
+        pass
 
     def get_videos(self, search_word):
-        listTrueVideo = []
-        listVideo = []
-        search_word = search_word.lower()
-        for i in range(len(self.videos)):
-            listVideo.append(self.videos[i].lower())
-        for qq in range(len(self.videos)-1):
-            sumWord = ''
-            for q in range(len(listVideo)):
-                for w in range(len(listVideo[q])):
-                    sumWord += listVideo[q][w]
-                    if search_word == sumWord and len(sumWord) == len(search_word):
-                        listTrueVideo.append(self.videos[qq])
-                        qq += 1
-                        break
-                    if listVideo[q][w] == ' ' or w == len(listVideo[q])-1:
-                        sumWord = ''
-        return listTrueVideo
+        pass
 
     def watch_video(self, name_video):
-        for i in range(len(self.videos)):
-            flagBreak = False
-            if self.current_user != None:
-                for key, value in User.dictUserAge.items():
-                    if key == self.current_user:
-                        for key1, value1 in Video.dictVideoAdult.items():
-                            if key1 == name_video:
-                                if value >= 18 and value1:
-                                    if name_video == self.videos[i]:
-                                        for timeS in range(10):
-                                            print(timeS + 1, end=' ')
-                                            time.sleep(0.1)
-                                        print("Конец видео")
-                                else:
-                                    print("Вам нет 18 лет, пожалуйста покиньте страницу")
-                                    flagBreak = True
-                                    break
-                    if flagBreak:
-                        break
-            else:
-                print("Войдите в аккаунт, чтобы смотреть видео")
-                break
-            if flagBreak:
-                break
+        pass
 
     def log_in(self, nickname, password):
-        for key, value in User.dictUserPassword.items():
-            if nickname == key and hash(password) == value:
-                self.current_user = nickname
+        pass
 
     def register(self, nickname, password, age):
-        if User.dictUserPassword == None or User.dictUserAge == None:
-            User.dictUserPassword = dict()
-            User.dictUserAge = dict()
-            User(nickname, password, age)
-            self.users.append(nickname)
-            self.current_user = nickname
-        else:
-            for i in self.users:
-                if nickname != i:
-                    User(nickname, password, age)
-                    self.users.append(nickname)
-                    self.current_user = nickname
-                    break
-                else:
-                    print(f"Пользователь {nickname} уже существует")
-                    break
+        pass
 
     def log_out(self):
-        self.current_user = None
+        pass
 
 
 ur = UrTube()
