@@ -4,12 +4,13 @@ import math
 class Figure:
     sides_count = 0
 
-    def __init__(self, __color, __sides):
-        self.__sides = [__sides]
-        for i in range(self.sides_count):
-            self.__sides.append(__sides[0])
-        self.__color = list(__color)
-        self.filled = False
+    def __init__(self, color, *sides, filled):
+        self.__color = list(color)
+        if len(sides) == self.sides_count:
+            self.__sides = sides
+        else:
+            self.__sides = [1] * self.sides_count
+        self.filled = filled
 
     def __is_valid_color(self, args):
         flag_proverka = False
@@ -45,16 +46,7 @@ class Figure:
         if not self.__is_valid_sides(new_sides):
             return None
         for i in new_sides:
-            if self.sides_count == Circle.sides_count:
-                self.__sides = list(new_sides)
-            elif self.sides_count == Triangle.sides_count:
-                self.__sides = list(new_sides)
-                for j in range(1, Triangle.sides_count):
-                    self.__sides.append(i)
-            elif self.sides_count == Cube.sides_count:
-                self.__sides = list(new_sides)
-                for j in range(1, Cube.sides_count):
-                    self.__sides.append(i)
+            self.__sides = list(new_sides) * self.sides_count
 
     def __len__(self):
         return sum(self.__sides)
@@ -64,34 +56,35 @@ class Circle(Figure):
     sides_count = 1
 
     def __init__(self, color, sides):
-        newCircle = Figure(color, sides)
-        self.set_color(color[0],color[1],color[2])
+        newCircle = Figure(color, sides, filled=False)
+        self.set_color(*color)
         self.set_sides(sides)
         self.__radius = sides / 3.14 / 2
 
     def get_square(self):
-        return float(self.__radius * (3.14 * 3.14))
+        return float(3.14 * self.__radius ** 2)
 
 
 class Triangle(Figure):
     sides_count = 3
 
     def __init__(self, color, sides):
-        newTriangle = Figure(color, sides)
-        self.set_color(color[0],color[1],color[2])
+        newTriangle = Figure(color, sides, filled=False)
+        self.set_color(*color)
         self.set_sides(sides)
 
     def get_square(self):
-        p = float((1 / 2) * sum(self.__sides))
-        return float(math.sqrt(p * (p - self.__sides[0]) * (p - self.__sides[1]) * (p - self.__sides[2])))
+        list_sides = self.get_sides()
+        p = float((1 / 2) * sum(list_sides))
+        return float(math.sqrt(p * (p - list_sides[0]) * (p - list_sides[1]) * (p - list_sides[2])))
 
 
 class Cube(Figure):
     sides_count = 12
 
     def __init__(self, color, sides):
-        newCube = Figure(color, sides)
-        self.set_color(color[0],color[1],color[2])
+        newCube = Figure(color, sides, filled=False)
+        self.set_color(*color)
         self.set_sides(sides)
 
     def get_volume(self):
@@ -100,6 +93,7 @@ class Cube(Figure):
 
 
 circle1 = Circle((200, 200, 100), 10)  # (Цвет, стороны)
+triangle1 = Triangle((1, 0, 254), 3)
 cube1 = Cube((222, 35, 130), 6)
 
 # Проверка на изменение цветов:
