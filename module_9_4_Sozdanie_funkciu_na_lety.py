@@ -4,9 +4,10 @@ from typing import Any
 first = 'Мама мыла раму'
 second = 'Рамена мало было'
 
-result1 = list(map(lambda x, y: True if x == y else False, first, second))
+result1 = list(map(lambda x, y: x == y, first, second))
 
 print(result1)
+
 
 def get_advanced_writer(file_name):
 
@@ -16,6 +17,7 @@ def get_advanced_writer(file_name):
                 file.write(f"{i}\n")
 
     return write_everything
+
 
 write = get_advanced_writer('example.txt')
 write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
