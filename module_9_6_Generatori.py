@@ -1,9 +1,10 @@
 def all_variants(text):
-    for q in text:
-        yield q
+    yield text[0]
+    yield text[1]
+    yield text[2]
     for w in range(len(text)):
         for e in range(w+1, len(text)):
-            yield text[w] + text[e]
+            yield text[w: e+1]
             break
     yield text
 
