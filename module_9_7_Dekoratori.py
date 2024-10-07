@@ -1,3 +1,6 @@
+import math
+
+
 def is_prime(func):
     def wrapper(*args):
         sum_ = func(*args)
@@ -9,12 +12,14 @@ def is_prime(func):
             if sum_ == 2 or sum_ == 3:
                 print("Простое")
                 return sum_
-            if sum_ % 1 == 0 and sum_ % sum_ == 0 and not (sum_ % 2 == 0 or sum_ % 3 == 0):
-                print("Простое")
-                return sum_
-            else:
-                print("Составное")
-                return sum_
+            for i in range(2, sum_):
+                if sum_ % 1 == 0 and sum_ % sum_ == 0 and not sum_ % i == 0:
+                    pass
+                else:
+                    print("Составное")
+                    return sum_
+            print("Простое")
+            return sum_
         else:
             print("Число должно быть натуральным, то есть больше 0")
             return sum_
