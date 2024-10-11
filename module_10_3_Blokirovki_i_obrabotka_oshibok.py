@@ -4,9 +4,9 @@ from random import randint
 
 
 class Bank:
-    balance = 0
 
     def __init__(self):
+        self.balance = 0
         self.lock = threading.Lock()
 
     def deposit(self):
