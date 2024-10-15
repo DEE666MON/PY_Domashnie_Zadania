@@ -12,7 +12,7 @@ class Table:
 
 class Guest(Thread):
     def __init__(self, name):
-        self.Name = name
+        self.name = name
         super().__init__()
 
     def run(self):
@@ -26,32 +26,33 @@ class Cafe:
 
     def guest_arrival(self, *guests):
         for guest in guests:
-            tableEmpty = 0
             for table in self.tables:
                 if table.guest is None:
                     table.guest = guest
                     table.guest.start()
-                    print(f"{guest.Name} сел(-а) за стол номер {table.number}")
+                    print(f"{guest.name} сел(-а) за стол номер {table.number}")
                     break
-                if tableEmpty == len(self.tables)-1:
+                else:
                     self.ochered.put(guest)
-                    print(f"{guest.Name} в очереди")
-                tableEmpty += 1
+                    print(f"{guest.name} в очереди")
 
     def discuss_guests(self):
-        while True:
+        flag = True
+        while flag:
             for table in self.tables:
                 if table.guest is not None or self.ochered.empty():
-                    if table.guest.is_alive():
-                        print(f"{table.guest.Name} покушал(-а) и ушёл(ушла)")
+                    if Guest(self).is_alive():
+                        print(f"{table.guest.name} покушал(-а) и ушёл(ушла)")
                         print(f"Стол номер {table.number} свободен")
-                        table.guest.join()
                         table.guest = None
                     if not self.ochered.empty() and table.guest is None:
                         table.guest = self.ochered.get()
                         print(
-                            f"{table.guest.Name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}")
+                            f"{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}")
                         table.guest.start()
+                    for _ in range(len(guests_names)):
+                        if self.ochered.empty() and table.guest is None and _ == len(guests_names) - 1:
+                            flag = False
 
 
 # Создание столов
@@ -69,3 +70,7 @@ cafe = Cafe(*tables)
 cafe.guest_arrival(*guests)
 # Обслуживание гостей
 cafe.discuss_guests()
+
+# Отключение потоков в основной программе
+for table in cafe.tables:
+    table.guest.join()
