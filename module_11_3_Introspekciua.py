@@ -14,10 +14,16 @@ class Proverka:
 
 def introspection_info(obj):
     slovar = {}
+    attributes = []
+    methods = []
     slovar["type"] = type(obj)
-    slovar["attributes"] = dir(obj)
-    slovar["methods"] = [i for i in dir(
-        obj) if inspect.ismethod(i) or inspect.isfunction(i)]
+    for i in dir(obj):
+        if callable(getattr(obj, i)):
+            methods.append(i)
+        else:
+            attributes.append(i)
+    slovar["attributes"] = attributes
+    slovar["methods"] = methods
     if inspect.isfunction(obj) or inspect.isclass(obj) or inspect.ismodule(obj):
         slovar["module"] = inspect.getmodule(obj)
     else:
