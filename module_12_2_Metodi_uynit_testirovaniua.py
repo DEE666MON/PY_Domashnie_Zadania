@@ -41,7 +41,23 @@ class Tournament:
         return finishers
 
 
+class RunnerTest(unittest.TestCase):
+    def test_walk(self):
+        test_wk = Runner("test_wk")
+        for _ in range(10):
+            test_wk.walk()
+        self.assertEqual(test_wk.distance, 50)
+
+    def test_run(self):
+        test_rn = Runner("test_rn")
+        for _ in range(10):
+            test_rn.run()
+        self.assertEqual(test_rn.distance, 100)
+
+
 class TournamentTest(unittest.TestCase):
+    # ПОЧЕМУ НЕ РАБОТАЕТ ЭТОТ КЛАСС С ПРОВЕРКОЙ "self.assertTrue" 73
+    # И НЕТ ВЫВОДА "print(cls.all_results)" 67?
     @classmethod
     def setUpClass(cls):
         cls.all_results = {}
@@ -76,3 +92,5 @@ class TournamentTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+    for key, value in TournamentTest.all_results:
+        print(value)
