@@ -1,0 +1,18 @@
+2024-11-13 12:33:08,363 | INFO | 'test_walk' выполнен успешно
+2024-11-13 12:33:08,363 | WARNING | Неверная скорость для Runner
+Traceback (most recent call last):
+  File "C:\Urban University\2Python-razrabotchik_HW(DZ)\Module_№12._Podderjka_cikla_razrabotki\module_12_4_Logirovanie.py", line 29, in test_walk2
+    test_wk = Runner("test_wk", -5)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Urban University\2Python-razrabotchik_HW(DZ)\Module_№12._Podderjka_cikla_razrabotki\module_12_4.py", line 11, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -5
+2024-11-13 12:33:08,364 | INFO | 'test_run' выполнен успешно
+2024-11-13 12:33:08,364 | WARNING | Неверный тип данных для объекта Runner
+Traceback (most recent call last):
+  File "C:\Urban University\2Python-razrabotchik_HW(DZ)\Module_№12._Podderjka_cikla_razrabotki\module_12_4_Logirovanie.py", line 39, in test_run2
+    test_rn = Runner(0)
+              ^^^^^^^^^
+  File "C:\Urban University\2Python-razrabotchik_HW(DZ)\Module_№12._Podderjka_cikla_razrabotki\module_12_4.py", line 6, in __init__
+    raise TypeError(f'Имя может быть только строкой, передано {type(name).__name__}')
+TypeError: Имя может быть только строкой, передано int
