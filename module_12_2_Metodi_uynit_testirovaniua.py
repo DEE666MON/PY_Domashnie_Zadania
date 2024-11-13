@@ -35,7 +35,7 @@ class Tournament:
             for participant in self.participants:
                 participant.run()
                 if participant.distance >= self.full_distance:
-                    finishers[place] = participant
+                    finishers[place] = participant.name
                     place += 1
                     self.participants.remove(participant)
         return finishers
@@ -56,41 +56,35 @@ class RunnerTest(unittest.TestCase):
 
 
 class TournamentTest(unittest.TestCase):
-    # ПОЧЕМУ НЕ РАБОТАЕТ ЭТОТ КЛАСС С ПРОВЕРКОЙ "self.assertTrue" 73
-    # И НЕТ ВЫВОДА "print(cls.all_results)" 67?
     @classmethod
     def setUpClass(cls):
         cls.all_results = {}
-
-    @classmethod
-    def tearDownClass(cls):
-        print(cls.all_results)
 
     def setUp(self):
         self.R1 = Runner("Усэйн", 10)
         self.R2 = Runner("Андрей", 9)
         self.R3 = Runner("Ник", 3)
-        self.assertTrue(expr=self.all_results[1][2].name == "Ник" and self.all_results[2][
-            2].name == "Ник" and self.all_results[3][3].name == "Ник")
 
-    def Tour1(self):
-        T1 = Tournament(90, self.R1, self.R3).start()
-        self.R1.distance = 0
-        self.R3.distance = 0
-        self.all_results[1] = T1
+    def test_tour1(self):
+        finishers1 = Tournament(90, self.R1, self.R3).start()
+        self.all_results[1] = finishers1
+        self.assertTrue(finishers1[2] == "Ник")
 
-    def Tour2(self):
-        T2 = Tournament(90, self.R2, self.R3).start()
-        self.R2.distance = 0
-        self.R3.distance = 0
-        self.all_results[2] = T2
+    def test_tour2(self):
+        finishers2 = Tournament(90, self.R2, self.R3).start()
+        self.all_results[2] = finishers2
+        self.assertTrue(finishers2[2] == "Ник")
 
-    def Tour3(self):
-        T3 = Tournament(90, self.R1, self.R2, self.R3).start()
-        self.all_results[3] = T3
+    def test_tour3(self):
+        finishers3 = Tournament(90, self.R1, self.R2, self.R3).start()
+        self.all_results[3] = finishers3
+        self.assertTrue(finishers3[3] == "Ник")
+
+    @classmethod
+    def tearDownClass(cls):
+        for key, value in cls.all_results.items():
+            print(value)
 
 
 if __name__ == "__main__":
     unittest.main()
-    for key, value in TournamentTest.all_results:
-        print(value)
