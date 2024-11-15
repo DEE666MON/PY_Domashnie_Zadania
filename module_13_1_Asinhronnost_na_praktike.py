@@ -6,7 +6,7 @@ list_strongmans = [['Pasha', 3], ['Denis', 4], ['Apollon', 5]]
 async def start_strongman(name, power):
     print(f"Силач {name} начал соревнование.")
     for i in range(1, 6):
-        await asyncio.sleep(power)
+        await asyncio.sleep(10 / power)
         print(f"Силач {name} поднял {i} шар.")
     print(f"Силач {name} закончил соревнования.")
 
