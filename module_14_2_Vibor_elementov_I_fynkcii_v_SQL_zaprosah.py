@@ -3,7 +3,7 @@ import sqlite3
 # SELECT FROM WHERE GROUP BY HAVING ORDER BY
 # Функции: COUNT SUM AVG MIN MAX
 
-connection = sqlite3.connect("database.db")
+connection = sqlite3.connect("not_telegram.db")
 cursor = connection.cursor()
 
 cursor.execute('''
@@ -38,7 +38,8 @@ cursor.execute("SELECT COUNT(*) FROM Users")
 total_users = cursor.fetchone()[0]
 cursor.execute("SELECT SUM(balance) FROM Users")
 all_balances = cursor.fetchone()[0]
-print(all_balances / total_users)
+if (all_balances is not None and total_users != 0):
+    print(all_balances / total_users)
 
 connection.commit()
 connection.close()
