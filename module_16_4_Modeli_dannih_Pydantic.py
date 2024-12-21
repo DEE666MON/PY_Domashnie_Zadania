@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 users = []
+count_users = 1
 
 
 class User(BaseModel):
@@ -26,8 +27,10 @@ def get_users() -> List[User]:
 def post_users(
         username: Annotated[str, Path(min_length=5, max_length=20, description="Enter username", example="UrbanUser")],
         age: int = Path(ge=18, le=120, description="Enter age", example="24")) -> User:
-    current_user = User(id=len(users) + 1, username=username, age=age)
+    global count_users
+    current_user = User(id=count_users, username=username, age=age)
     users.append(current_user)
+    count_users += 1
     return current_user
 
 
@@ -49,16 +52,9 @@ def put_users(user_id: Annotated[int, Path(ge=1, le=100, description="Enter User
 @app.delete("/user/{user_id}")
 def delete_users(user_id: Annotated[int, Path(ge=1, le=100, description="Enter User ID", example="50")]):
     try:
-        none_count = 0
         for U in users:
-            if users[U.id - 1].id == 0:
-                none_count += 1
             if user_id == U.id:
-                temp = users[U.id - 1]
-                users[U.id - 1] = User(id=0, username="None", age=0)
-                return temp
-        if none_count == len(users):
-            users.clear()
+                return users.pop(user_id - 1)
         raise IndexError
     except IndexError:
         raise HTTPException(status_code=404, detail="User was not found.")
