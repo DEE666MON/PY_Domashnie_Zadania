@@ -42,6 +42,7 @@ def put_users(user_id: Annotated[int, Path(ge=1, le=100, description="Enter User
                 U.username = username
                 U.age = age
                 return U
+        raise IndexError
     except IndexError:
         raise HTTPException(status_code=404, detail="User not found.")
 
