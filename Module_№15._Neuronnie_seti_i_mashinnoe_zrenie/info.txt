@@ -1,0 +1,18 @@
+Используется Google colab.
+ДЗ 1:
+https://colab.research.google.com/drive/19FdROraQFwOEAEv36PVA0ClePeWqiB-Z?usp=sharing
+ДЗ 2:
+https://colab.research.google.com/drive/10lOcsqdM-aJZWMQI8UgdW6ozIdREbxD0?usp=sharing
+https://colab.research.google.com/drive/1hDVAjQg5dp4J1dA9vXy9CGWcLu7jQBXs?usp=sharing
+ДЗ 3:
+https://colab.research.google.com/drive/1t8koRphD8oQie6iQ_4PwiSdgGO7zFLVf?usp=sharing
+ДЗ 4:
+https://colab.research.google.com/drive/1hWOfMh9HP5JjIWH4N_qWWSs8AVtq6ZYG?usp=sharing
+ДЗ 5:
+https://colab.research.google.com/drive/1G1IPKmINEDb-7Bc2PZASTX8e2kJv-m73?usp=sharing
+ДЗ 6:
+https://colab.research.google.com/drive/1hs1WtPBDwnpcqR7_2P-b8wkF98YiAEJJ?usp=sharing
+ДЗ 7:
+https://colab.research.google.com/drive/1r-n3pHfZ-fn5zpLcnHoPm4TQA4sEMVlV?usp=sharing
+ДЗ 8:
+https://colab.research.google.com/drive/1A5Dn6OoCayMj3jbueaEn7nNTMSoJZbQO?usp=sharing
